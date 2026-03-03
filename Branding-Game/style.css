@@ -1,148 +1,297 @@
 :root {
-    --font-family-inter: 'Inter', sans-serif;
-    --text-white: rgba(255, 255, 255, 1);
-    --text-rgb-212-21-63: rgba(212, 21, 63, 1);
+  --font-family-inter: 'Inter', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+  --text-white: rgba(255, 255, 255, 1);
+  --text-rgb-212-21-63: rgba(212, 21, 63, 1);
 }
 
 .text-white { color: var(--text-white); }
 .text-rgb-212-21-63 { color: var(--text-rgb-212-21-63); }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    width: 100%;
-    min-height: 100vh;
-    background: #f8f9fa;
-    font-family: var(--font-family-inter);
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f5f5;
+  font-family: var(--font-family-inter);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
-/* Keep your Figma styles, add necessary overrides */
+/* Outer container – fluid on mobile */
 .desktop-1-1 {
-    max-width: 1400px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 50px;
+  width: 100%;
+  max-width: 1355px;
+  background: white;
+  border-radius: 40px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  overflow-x: auto;
 }
 
-/* Pool for draggable tiles */
-.pool {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding: 20px;
-    background: #f0f0f0;
-    border-radius: 50px;
-    margin-bottom: 40px;
-    min-height: 160px;
-    border: 2px dashed #aaa;
+/* ----- The Brand (outermost) – fluid dimensions ----- */
+.the-brand-vessel-2 {
+  width: 100%;
+  max-width: 1300px;
+  height: auto;
+  min-height: 500px;
+  background-color: rgba(212, 21, 63, 1);
+  border-radius: 50px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
 }
 
-/* Draggable tiles (your exact style + draggable cursor) */
+.text-3 {
+  font-weight: 700;
+  font-size: clamp(24px, 6vw, 32px);
+  text-align: center;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+/* ----- Brand Identity (nested) – fluid ----- */
+.node-4 {
+  width: 100%;
+  max-width: 1205px;
+  height: auto;
+  min-height: 450px;
+  background-color: rgba(255, 145, 147, 1);
+  border-radius: 50px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-11 {
+  font-weight: 700;
+  font-size: clamp(20px, 5vw, 24px);
+  text-align: center;
+  margin-bottom: 15px;
+  width: 100%;
+  color: var(--text-rgb-212-21-63);
+}
+
+/* Two‑column content row – stack on small screens */
+.brandidentity-content {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.left-col {
+  flex: 2 1 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.right-col {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ----- Visual Identity – fluid ----- */
+.node-12 {
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  min-height: 400px;
+  background-color: rgba(255, 190, 206, 1);
+  border-radius: 50px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-20 {
+  font-weight: 700;
+  font-size: clamp(16px, 4vw, 20px);
+  text-align: center;
+  margin-bottom: 15px;
+  width: 100%;
+  color: var(--text-rgb-212-21-63);
+}
+
+/* Container for slots */
+.slots-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+  padding-top: 15px;
+}
+
+.brandidentity-slots {
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ----- Slot styling ----- */
+.slot {
+  width: min(345px, 80vw);
+  height: 45px;
+  background-color: rgba(255, 230, 237, 1);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: clamp(14px, 4vw, 20px);
+  color: var(--text-rgb-212-21-63);
+  transition: box-shadow 0.2s;
+}
+
+/* ----- Draggable tiles ----- */
 .draggable-tile {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    width: auto;
-    min-width: 140px;
-    background-color: rgba(255, 230, 237, 1);
-    border-radius: 25px;
-    cursor: grab;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.1s;
-    user-select: none;
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--text-rgb-212-21-63);
-    border: 2px solid transparent;
+  width: min(345px, 80vw);
+  height: 45px;
+  background-color: rgba(255, 230, 237, 1);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: clamp(14px, 4vw, 20px);
+  color: var(--text-rgb-212-21-63);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  transition: transform 0.1s;
 }
 
 .draggable-tile:active {
-    cursor: grabbing;
-    transform: scale(0.98);
+  cursor: grabbing;
+  transform: scale(0.98);
 }
 
-/* Drop zones (preserve your Figma backgrounds) */
-.dropzone {
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 50px !important;
-    min-height: 200px;
+/* ----- Pool ----- */
+.pool {
+  width: 100%;
+  max-width: 1300px;
+  height: auto;
+  min-height: 200px;
+  background: #FF9193;
+  border-radius: 50px;
+  padding: 20px 10px;
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-content: flex-start;
+  overflow-y: auto;
 }
 
-.the-brand-vessel-2 {
-    background-color: rgba(212, 21, 63, 1);
-}
-.node-4 {
-    background-color: rgba(255, 145, 147, 1);
-}
-.node-12 {
-    background-color: rgba(255, 190, 206, 1);
-}
-
-/* Headings inside zones */
-.text-3, .text-11, .text-20 {
-    font-weight: 700;
-    margin-bottom: 15px;
-    padding-left: 10px;
-}
-.text-3 { font-size: 32px; }
-.text-11 { font-size: 24px; }
-.text-20 { font-size: 20px; }
-
-/* Container for placed items inside each zone */
-.zone-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    min-height: 100px;
-}
-
-/* Feedback classes */
+/* ----- Feedback classes ----- */
 .draggable-tile.correct {
-    box-shadow: 0 0 15px 5px #2ecc71;
-    transition: box-shadow 0.2s;
+  box-shadow: 0 0 20px 5px #2ecc71;
 }
+
 .draggable-tile.incorrect {
-    animation: redFlash 0.4s ease;
-    border: 2px solid #e74c3c;
+  animation: redFlash 0.4s ease;
+  border: 2px solid #e74c3c;
 }
 
 @keyframes redFlash {
-    0% { background-color: #e74c3c; }
-    50% { background-color: #ff7675; }
-    100% { background-color: rgba(255, 230, 237, 1); }
+  0% { background-color: #e74c3c; }
+  50% { background-color: #ff7675; }
+  100% { background-color: rgba(255, 230, 237, 1); }
 }
 
-/* Buttons */
+/* ----- Controls (updated with your design) ----- */
 .controls {
-    text-align: center;
-    margin: 30px 0;
+  text-align: center;
+  margin-top: 30px;
 }
+
 button {
-    background: #3498db;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    font-size: 18px;
-    border-radius: 50px;
-    cursor: pointer;
-    margin: 0 10px;
-    transition: background 0.2s;
+  background: rgba(212, 21, 63, 1);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: background 0.2s;
+  font-weight: 600;
 }
+
 button:hover {
-    background: #2980b9;
+  background: rgb(196, 7, 39);
 }
+
 #resetBtn {
-    background: #95a5a6;
+  color: rgb(196, 7, 39);
+  background: transparent;
+  outline: 2px solid rgb(196, 7, 39);
 }
 #resetBtn:hover {
-    background: #7f8c8d;
+  background: transparent;
+  outline: 2px solid rgba(212, 21, 63, 1);
+}
+
+/* ----- Result Modal (keep as is) ----- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 30px;
+  text-align: center;
+  font-size: clamp(18px, 5vw, 24px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  width: 90%;
+  max-width: 400px;
+}
+
+#score-message {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+#tryAgainBtn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: clamp(16px, 4vw, 20px);
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+#tryAgainBtn:hover {
+  background: #c0392b;
 }
