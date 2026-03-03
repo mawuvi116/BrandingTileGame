@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Identity Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>🧩 Brand Identity Game</h1>
+    <p>Drag each item into the correct category. Click "Check Answers" to see feedback.</p>
+
+    <!-- Pool of draggable items -->
+    <div class="pool" id="item-pool" dropzone="move" @dragover.prevent @drop="dropHandler">
+        <div class="drag-item" draggable="true" id="item-logo" data-category="visual">Logo</div>
+        <div class="drag-item" draggable="true" id="item-typography" data-category="visual">Typography</div>
+        <div class="drag-item" draggable="true" id="item-layout" data-category="visual">Layout</div>
+        <div class="drag-item" draggable="true" id="item-graphic" data-category="visual">Graphic Assets</div>
+        <div class="drag-item" draggable="true" id="item-photography" data-category="visual">Photography</div>
+        <div class="drag-item" draggable="true" id="item-color" data-category="visual">Color Palette</div>
+        <div class="drag-item" draggable="true" id="item-patterns" data-category="visual">Patterns</div>
+        <div class="drag-item" draggable="true" id="item-personality" data-category="brandidentity">Personality</div>
+        <div class="drag-item" draggable="true" id="item-messaging" data-category="brandidentity">Messaging</div>
+        <div class="drag-item" draggable="true" id="item-tone" data-category="brandidentity">Tone of Voice</div>
+        <div class="drag-item" draggable="true" id="item-story" data-category="brand">Brand Story</div>
+        <div class="drag-item" draggable="true" id="item-values" data-category="brand">Values</div>
+        <div class="drag-item" draggable="true" id="item-communication" data-category="brandidentity">Communication</div>
+    </div>
+
+    <!-- Three category drop zones -->
+    <div class="zones-container">
+        <div class="dropzone" id="zone-brand" dropzone="move" @dragover.prevent @drop="dropHandler">
+            <h2>The Brand</h2>
+            <div class="zone-items"></div>
+        </div>
+        <div class="dropzone" id="zone-brandidentity" dropzone="move" @dragover.prevent @drop="dropHandler">
+            <h2>Brand Identity</h2>
+            <div class="zone-items"></div>
+        </div>
+        <div class="dropzone" id="zone-visual" dropzone="move" @dragover.prevent @drop="dropHandler">
+            <h2>Visual Identity</h2>
+            <div class="zone-items"></div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button id="checkBtn">✅ Check Answers</button>
+        <button id="resetBtn">🔄 Reset</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
